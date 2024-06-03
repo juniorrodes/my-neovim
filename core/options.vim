@@ -4,6 +4,8 @@ if !empty(provider#clipboard#Executable())
   set clipboard+=unnamedplus
 endif
 
+nnoremap <C-a> <Cmd>lua vim.lsp.buf.code_action()<CR>
+
 " Ignore certain files and folders when globing
 set wildignore+=*.o,*.obj,*.dylib,*.bin,*.dll,*.exe
 set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**
