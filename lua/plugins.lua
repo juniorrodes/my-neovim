@@ -12,6 +12,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
+local isOSX = false
+if vim.loop.os_uname().sysname == 'Darwin' then
+    isOSX = true
+end
+
 local plugins = {
     {
         'williamboman/mason.nvim',
@@ -108,6 +113,21 @@ local plugins = {
             'neovim/nvim-lspconfig'
         },
     },
+    {
+        'github/copilot.vim',
+        enable = isOSX,
+    },
+    {
+        'ray-x/go.nvim',
+        dependencies = {
+            'ray-x/guihua.lua',
+        },
+	    ft = {"go", "gomod"},
+        config = function ()
+            require('go').setup{}
+        end,
+        event = { "CmdlineEnter" },
+    }
 }
 
 return require('lazy').setup(plugins)
