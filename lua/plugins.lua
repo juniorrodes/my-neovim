@@ -115,7 +115,7 @@ local plugins = {
     },
     {
         'github/copilot.vim',
-        enable = isOSX,
+        enabled = isOSX,
     },
     {
         'ray-x/go.nvim',
@@ -127,6 +127,13 @@ local plugins = {
             require('go').setup{}
         end,
         event = { "CmdlineEnter" },
+},
+{
+	"kylechui/nvim-surround",
+        event = "VeryLazy",
+        config = function ()
+            require('config.surround')
+        end
     }
 }
 

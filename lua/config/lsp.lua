@@ -89,7 +89,6 @@ lspconfig.lua_ls.setup {
 
 lspconfig.clangd.setup{}
 
---
 lspconfig.zls.setup {
   on_attach = function (_, bufnr)
     vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
@@ -97,7 +96,16 @@ lspconfig.zls.setup {
   end,
   capabilities = capabilities,
 }
---
---lspconfig.glsl_analyzer.setup {}
---
---lspconfig.sqlls.setup {}
+
+lspconfig.pylsp.setup {
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    ignore = {'W391'},
+                    maxLineLength = 100,
+                },
+            },
+        },
+    },
+}
