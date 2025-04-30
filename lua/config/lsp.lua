@@ -29,7 +29,7 @@ local on_attach = function(_, bufnr)
     vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
     --local opts = { buffer = bufnr, remap = false }
     --vim.keymap.set('n', '<leader>lf', custom_format, opts)
-    require('nvim-cmp').on_attach()
+    --require('nvim-cmp').on_attach()
 end
 
 vim.filetype.add({ extension = { templ = 'templ' } })
@@ -52,6 +52,7 @@ lspconfig.templ.setup {
     cmd = { 'templ', 'lsp', '-log', '/home/juniorrodes/templLsp.log' }
 }
 
+lspconfig.arduino_language_server.setup{}
 
 lspconfig.lua_ls.setup {
     on_init = function(client)
@@ -87,7 +88,11 @@ lspconfig.lua_ls.setup {
     }
 }
 
-lspconfig.clangd.setup{}
+lspconfig.clangd.setup{
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }, -- exclude proto
+}
+
+lspconfig.dockerls.setup{}
 
 lspconfig.zls.setup {
   on_attach = function (_, bufnr)
@@ -96,6 +101,8 @@ lspconfig.zls.setup {
   end,
   capabilities = capabilities,
 }
+
+lspconfig.buf_ls.setup{}
 
 lspconfig.pylsp.setup {
     settings = {
@@ -109,3 +116,14 @@ lspconfig.pylsp.setup {
         },
     },
 }
+
+local html_capabilities = vim.lsp.protocol.make_client_capabilities()
+html_capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.html.setup {
+    capabilities = html_capabilities,
+}
+
+lspconfig.tailwindcss.setup{}
+
+lspconfig.ts_ls.setup{}

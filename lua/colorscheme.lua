@@ -1,7 +1,7 @@
 local kanagawa = require('kanagawa')
 
 kanagawa.setup({
-  theme = "wave"
+    theme = "wave"
 })
 
 vim.cmd('colorscheme kanagawa')
