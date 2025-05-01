@@ -52,12 +52,12 @@ local plugins = {
         end
     },
     {
-		'neovim/nvim-lspconfig',
-		--event = { "BufRead", "BufNewFile" },
-		config = function()
-			require('config.lsp')
-		end,
-	},
+	    'neovim/nvim-lspconfig',
+	    --event = { "BufRead", "BufNewFile" },
+	    config = function()
+	        require('config.lsp')
+	    end,
+    },
     {
         'lewis6991/hover.nvim',
         config = function ()
@@ -127,14 +127,26 @@ local plugins = {
             require('go').setup{}
         end,
         event = { "CmdlineEnter" },
-},
-{
-	"kylechui/nvim-surround",
+    },
+    {
+	    "kylechui/nvim-surround",
         event = "VeryLazy",
         config = function ()
             require('config.surround')
         end
-    }
+    },
+    {
+        'folke/trouble.nvim',
+        opts = {},
+        cmd = 'Trouble',
+        keys = {
+            {
+                '<leader>xx',
+                '<cmd>Trouble diagnostics toggle<cr>',
+                desc = 'Diagnostics (Trouble)',
+            },
+        },
+    },
 }
 
 return require('lazy').setup(plugins)
