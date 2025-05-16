@@ -147,6 +147,18 @@ local plugins = {
             },
         },
     },
+    {
+        'akinsho/git-conflict.nvim',
+        config = function ()
+            require('git-conflict').setup()
+        end
+    },
+    {
+        'mfussenegger/nvim-dap',
+        config = function ()
+            require('config.dap')
+        end
+    },
 }
 
 return require('lazy').setup(plugins)
