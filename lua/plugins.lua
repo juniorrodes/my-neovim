@@ -159,6 +159,15 @@ local plugins = {
             require('config.dap')
         end
     },
+    {
+        'nvim-neorg/neorg',
+        lazy = false,
+        ft = "norg",
+        version = "*",
+        config = function ()
+            require('config.neorg')
+        end
+    },
 }
 
 return require('lazy').setup(plugins)
