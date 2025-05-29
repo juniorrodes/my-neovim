@@ -150,7 +150,7 @@ local plugins = {
     {
         'akinsho/git-conflict.nvim',
         config = function ()
-            require('git-conflict').setup()
+            require('git-conflict').setup({})
         end
     },
     {
@@ -167,6 +167,15 @@ local plugins = {
         config = function ()
             require('config.neorg')
         end
+    },
+    {
+        'folke/lazydev.nvim',
+        ft = 'lua',
+        opts = {
+            library = {
+                { path = '${3rd}/luv/library', words = { 'vim%.uv', }, }
+            },
+        },
     },
 }
 
