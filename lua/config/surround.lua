@@ -1,3 +1,7 @@
-local surround = require('nvim-surround')
-
-surround.setup {}
+return {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    config = function ()
+        require('nvim-surround').setup()
+    end
+}
