@@ -14,6 +14,7 @@ return {
                       config = {
                         workspaces = {
                           notes = "~/notes",
+                          myapp = "~/Documents/go_projects/series-list/docs"
                         },
                         default_workspace = "notes",
                       },

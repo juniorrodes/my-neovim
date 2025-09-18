@@ -1,4 +1,8 @@
 return {
-    'github/copilot.vim',
-    enabled = vim.loop.os_uname().sysname == 'Darwin', -- Only enable on macOS
+    'zbirenbaum/copilot.lua',
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function ()
+        require('copilot').setup({})
+    end
 }

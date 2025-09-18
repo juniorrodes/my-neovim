@@ -27,6 +27,9 @@ return {
             local sidebar = widgets.sidebar(widgets.scopes)
             sidebar.open()
         end)
+        vim.keymap.set('n', '<Leader>du', function ()
+            require('dapui').open({})
+        end)
 
         dap.adapters.codelldb = {
             type = 'executable',

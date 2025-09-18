@@ -130,6 +130,9 @@ return {
         lspconfig.tailwindcss.setup{}
 
         lspconfig.ts_ls.setup{}
+
+        vim.lsp.enable('ocamllsp')
+        vim.lsp.enable('glsl_analyzer')
     end
 }
 
