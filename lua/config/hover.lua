@@ -3,10 +3,10 @@ return {
     config = function ()
         local hover = require('hover')
 
-        hover.setup {
-            init = function ()
-              require('hover.providers.lsp')
-            end,
+        hover.config({
+            providers = {
+                'hover.providers.lsp'
+            },
             preview_opts = {
               border = 'single'
             },
@@ -15,10 +15,10 @@ return {
             mouse_providers = {
               'LSP'
             },
-        }
+        })
 
         -- Setup keymaps
-        vim.keymap.set("n", "K", hover.hover, {desc = "hover.nvim"})
-        vim.keymap.set("n", "gK", hover.hover_select, {desc = "hover.nvim (select)"})
+        vim.keymap.set("n", "K", hover.open, {desc = "hover.nvim"})
+        vim.keymap.set("n", "gK", hover.enter, {desc = "hover.nvim (select)"})
     end
 }

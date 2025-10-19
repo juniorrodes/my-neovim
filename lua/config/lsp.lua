@@ -1,7 +1,7 @@
 return {
     'neovim/nvim-lspconfig',
     config = function ()
-        local lspconfig = require('lspconfig')
+        --local lspconfig = require('lspconfig')
 
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -37,27 +37,25 @@ return {
 
         vim.filetype.add({ extension = { templ = 'templ' } })
 
-        lspconfig.gopls.setup {
+        vim.lsp.config('gopls', {
             capabilities = capabilities,
             settings = {
                 gopls = {
                     completeUnimported = true,
                 },
             },
-        }
+        })
 
-        lspconfig.templ.setup {
+        vim.lsp.config('templ', {
             on_attach = on_attach,
             capabilities = capabilities,
             filetypes = {
                 'templ'
             },
             cmd = { 'templ', 'lsp', '-log', '/home/juniorrodes/templLsp.log' }
-        }
+        })
 
-        lspconfig.arduino_language_server.setup{}
-
-        lspconfig.lua_ls.setup {
+        vim.lsp.config('lua_ls', {
             on_init = function(client)
                 if client.workspace_folders then
                   local path = client.workspace_folders[1].name
@@ -89,50 +87,52 @@ return {
             settings = {
                 Lua = {}
             }
-        }
+        })
 
-        lspconfig.clangd.setup{
-            filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }, -- exclude proto
-        }
+        --vim.lsp.config.clangd.setup{
+        --    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }, -- exclude proto
+        --}
 
-        lspconfig.dockerls.setup{}
-
-        lspconfig.zls.setup {
+        vim.lsp.config('zls', {
           on_attach = function (_, bufnr)
             vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
             --require('completion').on_attach()
           end,
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.buf_ls.setup{}
+        --vim.lsp.config.buf_ls.setup{}
 
-        lspconfig.pylsp.setup {
-            settings = {
-                pylsp = {
-                    plugins = {
-                        pycodestyle = {
-                            ignore = {'W391'},
-                            maxLineLength = 100,
-                        },
-                    },
-                },
-            },
-        }
+        --vim.lsp.config.pylsp.setup {
+        --    settings = {
+        --        pylsp = {
+        --            plugins = {
+        --                pycodestyle = {
+        --                    ignore = {'W391'},
+        --                    maxLineLength = 100,
+        --                },
+        --            },
+        --        },
+        --    },
+        --}
 
         local html_capabilities = vim.lsp.protocol.make_client_capabilities()
         html_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-        lspconfig.html.setup {
-            capabilities = html_capabilities,
-        }
+        --vim.lsp.config.html.setup {
+        --    capabilities = html_capabilities,
+        --}
 
-        lspconfig.tailwindcss.setup{}
-
-        lspconfig.ts_ls.setup{}
-
+        -- enabling servers
+        vim.lsp.enable('tailwindcss')
+        vim.lsp.enable('ts_ls')
         vim.lsp.enable('ocamllsp')
         vim.lsp.enable('glsl_analyzer')
+        vim.lsp.enable('lua_ls')
+        vim.lsp.enable('gopls')
+        vim.lsp.enable('templ')
+        vim.lsp.enable('zls')
+        vim.lsp.enable('templ')
     end
 }
 
